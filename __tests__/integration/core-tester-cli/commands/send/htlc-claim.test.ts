@@ -5,7 +5,7 @@ import { Enums, Managers } from "@blockpool-io/crypto";
 import nock from "nock";
 import { HtlcClaimCommand } from "../../../../../packages/core-tester-cli/src/commands/send/htlc-claim";
 import { htlcSecretHex } from "../../../../utils/fixtures";
-import { bplToSatoshi, captureTransactions, toFlags } from "../../shared";
+import { arkToSatoshi, captureTransactions, toFlags } from "../../shared";
 import { nodeStatusResponse } from "./fixtures";
 
 beforeEach(() => {
@@ -39,7 +39,7 @@ describe("Commands - Htlc claim", () => {
         const opts = {
             number: 1,
             htlcClaimFee: 0.2,
-            amount: bplToSatoshi(12),
+            amount: arkToSatoshi(12),
         };
 
         const expectedTransactions = [];
@@ -52,7 +52,7 @@ describe("Commands - Htlc claim", () => {
         expectedTransactions
             .filter(tx => tx.type === Enums.TransactionType.HtlcClaim)
             .map(tx => {
-                expect(tx.fee).toEqual(bplToSatoshi(opts.htlcClaimFee));
+                expect(tx.fee).toEqual(arkToSatoshi(opts.htlcClaimFee));
                 expect(tx.asset.claim.unlockSecret).toEqual(htlcSecretHex);
                 expect(tx.asset.claim.lockTransactionId).toBeDefined();
             });
@@ -61,7 +61,7 @@ describe("Commands - Htlc claim", () => {
     it("should apply htlc claim transactions with default fee when none specified", async () => {
         const opts = {
             number: 1,
-            amount: bplToSatoshi(12),
+            amount: arkToSatoshi(12),
         };
 
         const expectedTransactions = [];
@@ -74,7 +74,7 @@ describe("Commands - Htlc claim", () => {
         expectedTransactions
             .filter(tx => tx.type === Enums.TransactionType.HtlcClaim)
             .map(tx => {
-                expect(tx.fee).toEqual(bplToSatoshi(0.1));
+                expect(tx.fee).toEqual(arkToSatoshi(0.1));
                 expect(tx.asset.claim.unlockSecret).toEqual(htlcSecretHex);
                 expect(tx.asset.claim.lockTransactionId).toBeDefined();
             });

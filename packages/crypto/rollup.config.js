@@ -91,7 +91,7 @@ const umdConfig = {
     output: {
         file: pkg["umd:main"],
         format: "iife",
-        name: "ArkCrypto",
+        name: "BplCrypto",
     },
     plugins: [
         json(),

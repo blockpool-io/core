@@ -4,7 +4,7 @@ import { httpie } from "@blockpool-io/core-utils";
 import { Identities, Managers } from "@blockpool-io/crypto";
 import nock from "nock";
 import { IpfsCommand } from "../../../../../packages/core-tester-cli/src/commands/send/ipfs";
-import { bplToSatoshi, captureTransactions, toFlags } from "../../shared";
+import { arkToSatoshi, captureTransactions, toFlags } from "../../shared";
 import { nodeStatusResponse } from "./fixtures";
 
 beforeEach(() => {
@@ -50,7 +50,7 @@ describe("Commands - Ipfs", () => {
         expectedTransactions
             .filter(tx => tx.type === 5)
             .map(tx => {
-                expect(tx.fee).toEqual(bplToSatoshi(opts.ipfsFee));
+                expect(tx.fee).toEqual(arkToSatoshi(opts.ipfsFee));
                 expect(tx.asset.ipfs).toEqual(
                     `Qm${Identities.Address.fromPublicKey(tx.senderPublicKey)
                         .repeat(2)
@@ -74,7 +74,7 @@ describe("Commands - Ipfs", () => {
         expectedTransactions
             .filter(tx => tx.type === 5)
             .map(tx => {
-                expect(tx.fee).toEqual(bplToSatoshi(5));
+                expect(tx.fee).toEqual(arkToSatoshi(5));
                 expect(tx.asset.ipfs).toEqual(
                     `Qm${Identities.Address.fromPublicKey(tx.senderPublicKey)
                         .repeat(2)

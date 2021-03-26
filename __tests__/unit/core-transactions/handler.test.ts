@@ -143,7 +143,7 @@ describe("General Tests", () => {
         });
 
         it("should be false if wallet has not enough balance", async () => {
-            // 1 bpltoshi short
+            // 1 arktoshi short
             senderWallet.balance = transaction.amount.plus(transaction.fee).minus(1);
             await expect(handler.throwIfCannotBeApplied(instance, senderWallet, walletManager)).rejects.toThrow(
                 InsufficientBalanceError,

@@ -1,4 +1,4 @@
-import { BPLTOSHI } from "../../../../packages/crypto/src/constants";
+import { ARKTOSHI } from "../../../../packages/crypto/src/constants";
 import { HtlcLockExpirationType, TransactionType } from "../../../../packages/crypto/src/enums";
 import { PublicKey } from "../../../../packages/crypto/src/identities";
 import { Utils } from "../../../../packages/crypto/src/index";
@@ -18,8 +18,8 @@ configManager.setHeight(2); // aip11 (v2 transactions) is true from height 2 on 
 
 describe("Transfer Transaction", () => {
     const address = "DTRdbaUW3RQQSL5By4G43JVaeHiqfVp9oh";
-    const fee = 1 * BPLTOSHI;
-    const amount = 10 * BPLTOSHI;
+    const fee = 1 * ARKTOSHI;
+    const amount = 10 * ARKTOSHI;
 
     beforeAll(() => {
         transactionSchema = TransactionTypeFactory.get(TransactionType.Transfer).getSchema();
@@ -325,7 +325,7 @@ describe("Delegate Registration Transaction", () => {
     it("should be invalid due to non-zero amount", () => {
         transaction
             .usernameAsset("delegate1")
-            .amount(10 * BPLTOSHI)
+            .amount(10 * ARKTOSHI)
             .sign("passphrase");
 
         const { error } = Ajv.validate(transactionSchema.$id, transaction.getStruct());
@@ -387,7 +387,7 @@ describe("Delegate Registration Transaction", () => {
         transaction = BuilderFactory.transfer();
         transaction
             .recipientId(undefined)
-            .amount(10 * BPLTOSHI)
+            .amount(10 * ARKTOSHI)
             .sign("passphrase");
 
         const { error } = Ajv.validate(transactionSchema.$id, transaction.getStruct());
@@ -435,7 +435,7 @@ describe("Vote Transaction", () => {
     it("should be invalid due to non-zero amount", () => {
         transaction
             .votesAsset([vote])
-            .amount(10 * BPLTOSHI)
+            .amount(10 * ARKTOSHI)
             .sign("passphrase");
 
         const { error } = Ajv.validate(transactionSchema.$id, transaction.getStruct());
@@ -561,7 +561,7 @@ describe("Multi Signature Registration Transaction", () => {
     it("should be invalid due to non-zero amount", () => {
         transaction
             .multiSignatureAsset(multiSignatureAsset)
-            .amount(10 * BPLTOSHI)
+            .amount(10 * ARKTOSHI)
             .sign("passphrase");
         signTransaction(transaction, passphrases);
 
@@ -834,8 +834,8 @@ describe("Multi Payment Transaction", () => {
 
 describe("HTLC Lock Transaction", () => {
     const address = "DTRdbaUW3RQQSL5By4G43JVaeHiqfVp9oh";
-    const fee = 1 * BPLTOSHI;
-    const amount = 10 * BPLTOSHI;
+    const fee = 1 * ARKTOSHI;
+    const amount = 10 * ARKTOSHI;
     const htlcLockAsset = {
         secretHash: htlcSecretHashHex,
         expiration: {

@@ -21,8 +21,8 @@ describe("Transaction Forging - Bridgechain resignation", () => {
         it("should broadcast, accept and forge it [Signed with 1 Passphrase]", async () => {
             // Business registration
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withPassphrase(secrets[0])
                 .createOne();
@@ -130,7 +130,7 @@ describe("Transaction Forging - Bridgechain resignation", () => {
             // Registering a business
             const businessRegistration = TransactionFactory.businessRegistration({
                 name: "blockpool-io",
-                website: "https://bpl.io",
+                website: "https://ark.io",
             })
                 .withPassphrase(passphrase)
                 .withSecondPassphrase(secondPassphrase)
@@ -217,8 +217,8 @@ describe("Transaction Forging - Bridgechain resignation", () => {
 
             // Registering a business
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withSenderPublicKey(multiSigPublicKey)
                 .withPassphraseList(passphrases)

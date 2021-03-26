@@ -57,7 +57,7 @@ describe("Connection", () => {
         for (let i = 0; i < delegates.length; i++) {
             const { publicKey } = delegates[i];
             const wallet = databaseWalletManager.findByPublicKey(publicKey);
-            wallet.balance = Utils.BigNumber.make(100_000 * Constants.BPLTOSHI);
+            wallet.balance = Utils.BigNumber.make(100_000 * Constants.ARKTOSHI);
             wallet.setAttribute("delegate", {
                 username: `delegate-${i + 1}`,
                 voteBalance: Utils.BigNumber.ZERO,
@@ -121,7 +121,7 @@ describe("Connection", () => {
 
         buffer.writeByte(0xff); // fill, to disambiguate from v1
         writeByte("version", 0x02);
-        writeByte("network", transaction.network); // bpl = 0x17, devnet = 0x30
+        writeByte("network", transaction.network); // ark = 0x17, devnet = 0x30
         writeUint32("typeGroup", transaction.typeGroup || Enums.TransactionTypeGroup.Core);
         writeUint16("type", transaction.type);
 

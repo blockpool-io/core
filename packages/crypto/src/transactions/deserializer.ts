@@ -88,7 +88,7 @@ export class Deserializer {
 
     private static deserializeECDSA(transaction: ITransactionData, buf: ByteBuffer): void {
         const currentSignatureLength = (): number => {
-            buf.mark();
+            buf.mbpl();
 
             const lengthHex: string = buf
                 .skip(1)
@@ -106,13 +106,13 @@ export class Deserializer {
         }
 
         const beginningMultiSignature = () => {
-            buf.mark();
+            buf.mbpl();
 
-            const marker: number = buf.readUint8();
+            const mbpler: number = buf.readUint8();
 
             buf.reset();
 
-            return marker === 255;
+            return mbpler === 255;
         };
 
         // Second Signature

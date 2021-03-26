@@ -149,7 +149,7 @@ describe("Hash", () => {
             }
         });
 
-        it("should not verify with a wrong integer mbpler", () => {
+        it("should not verify with a wrong integer marker", () => {
             const hash: Buffer = TransactionUtils.toHash(transaction);
             const validSignature =
                 "30450221008682af02d5f3c6302af14f3239a997022f69c28a5e3282603d5f25912ccd3b47022023cec266362f5bb91e6a2f2fcb62f4c61829dfd7a096432ff8b4a54a83577444";

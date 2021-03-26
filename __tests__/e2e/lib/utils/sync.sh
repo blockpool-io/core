@@ -33,17 +33,17 @@ sudo chmod +x dist/docker*
 sudo chmod +x dist/node0/docker/testnet-e2e/entrypoint.sh
 sudo chmod +x dist/node1/docker/testnet-e2e/entrypoint.sh
 sudo chmod +x dist/node2/docker/testnet-e2e/entrypoint.sh
-sudo chmod +x dist/node0/bpl.sh
-sudo chmod +x dist/node1/bpl.sh
-sudo chmod +x dist/node2/bpl.sh
+sudo chmod +x dist/node0/ark.sh
+sudo chmod +x dist/node1/ark.sh
+sudo chmod +x dist/node2/ark.sh
 
 # launch docker containers for the 3 nodes (each node has 1 container for core and 1 for postgres)
 cd dist && ./docker-init.sh && ./docker-start.sh && cd ..
 
 # download and restore last mainnet snapshot into nodes 0 and 1 : node2 will be the one syncing from zero
-wget http://snapshots.bpl.io/current-v2
+wget http://snapshots.ark.io/current-v2
 docker ps --format \"{{.Names}}\" | grep node[0-1]_postgres | xargs -I {} sh -c 'docker cp current-v2 {}:current-v2'
-docker ps --format \"{{.Names}}\" | grep node[0-1]_postgres | xargs -I {} sh -c 'docker exec -i {} pg_restore -U bpl -O -j 8 -d bpl_testnet current-v2'
+docker ps --format \"{{.Names}}\" | grep node[0-1]_postgres | xargs -I {} sh -c 'docker exec -i {} pg_restore -U ark -O -j 8 -d ark_testnet current-v2'
 
 # run sync
 sudo chown -R $USER:$USER ./dist/ && yarn run-sync -n mainnet -t 1200

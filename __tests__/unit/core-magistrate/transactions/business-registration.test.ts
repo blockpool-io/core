@@ -224,8 +224,8 @@ describe("Business registration transaction", () => {
             it("should fail due to invalid uri", () => {
                 const businessRegistration = builder
                     .businessRegistrationAsset({
-                        name: "bpl",
-                        website: "https://bpl.io",
+                        name: "ark",
+                        website: "https://ark.io",
                         repository: "my-awesome-repo.com",
                     })
                     .network(23)
@@ -238,8 +238,8 @@ describe("Business registration transaction", () => {
             it("should fail because max repository length is 80", () => {
                 const businessRegistration = builder
                     .businessRegistrationAsset({
-                        name: "bpl",
-                        website: "https://bpl.io",
+                        name: "ark",
+                        website: "https://ark.io",
                         repository: "http://" + "a".repeat(81),
                     })
                     .network(23)

@@ -4,7 +4,7 @@ import { httpie } from "@blockpool-io/core-utils";
 import { Managers } from "@blockpool-io/crypto";
 import nock from "nock";
 import { SecondSignatureRegistrationCommand } from "../../../../../packages/core-tester-cli/src/commands/send/second-signature-registration";
-import { bplToSatoshi, captureTransactions, expectTransactions, toFlags } from "../../shared";
+import { arkToSatoshi, captureTransactions, expectTransactions, toFlags } from "../../shared";
 import { nodeStatusResponse } from "./fixtures";
 
 beforeEach(() => {
@@ -47,7 +47,7 @@ describe("Commands - Second signature", () => {
         expect(httpie.post).toHaveBeenCalledTimes(2);
 
         expectTransactions(expectedTransactions, {
-            fee: bplToSatoshi(opts.signatureFee),
+            fee: arkToSatoshi(opts.signatureFee),
             asset: {
                 signature: {
                     publicKey: expect.any(String),

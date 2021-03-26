@@ -4,7 +4,7 @@ import { httpie } from "@blockpool-io/core-utils";
 import { Managers, Transactions } from "@blockpool-io/crypto";
 import nock from "nock";
 import { MultiSignatureRegistrationCommand } from "../../../../../packages/core-tester-cli/src/commands/send/multi-signature-registration";
-import { bplToSatoshi, captureTransactions, expectTransactions, toFlags } from "../../shared";
+import { arkToSatoshi, captureTransactions, expectTransactions, toFlags } from "../../shared";
 import { nodeStatusResponse } from "./fixtures";
 
 beforeEach(() => {
@@ -50,7 +50,7 @@ describe("Commands - Multi signature registration", () => {
 
         expect(httpie.post).toHaveBeenCalledTimes(2);
         expectTransactions(expectedTransactions, {
-            fee: bplToSatoshi(20),
+            fee: arkToSatoshi(20),
             asset: {
                 multiSignature: {
                     min: 3,

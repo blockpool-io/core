@@ -25,7 +25,7 @@ describe("Transaction Forging - Business registration", () => {
                 businessRegistrations.push(
                     TransactionFactory.businessRegistration({
                         name,
-                        website: "http://bpl.io",
+                        website: "http://ark.io",
                     })
                         .withPassphrase(secrets[10 + i])
                         .createOne(),
@@ -42,8 +42,8 @@ describe("Transaction Forging - Business registration", () => {
         it("should be rejected, because wallet is already a business [Signed with 1 Passphrase]", async () => {
             // Registering a business again
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl.io",
-                website: "https://bpl.io",
+                name: "ark.io",
+                website: "https://ark.io",
             })
                 .withPassphrase(secrets[10])
                 .createOne();
@@ -56,8 +56,8 @@ describe("Transaction Forging - Business registration", () => {
         it("should be rejected, because name business contains unicode control characters [Signed with 1 Passphrase]", async () => {
             // Registering a business with unicode control characters in its name
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "\u0000bpl",
-                website: "https://bpl.io",
+                name: "\u0000ark",
+                website: "https://ark.io",
             })
                 .withPassphrase(secrets[1])
                 .createOne();
@@ -77,7 +77,7 @@ describe("Transaction Forging - Business registration", () => {
                 businessRegistrations.push(
                     TransactionFactory.businessRegistration({
                         name,
-                        website: "https://bpl.io",
+                        website: "https://ark.io",
                     })
                         .withPassphrase(secrets[1])
                         .createOne(),
@@ -95,16 +95,16 @@ describe("Transaction Forging - Business registration", () => {
         it("should be rejected, because business registration is already in the pool [Signed with 1 Passphrase]", async () => {
             // Registering a business
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withPassphrase(secrets[1])
                 .createOne();
 
             // Registering a business again
             const businessRegistration2 = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withPassphrase(secrets[1])
                 .withNonce(businessRegistration.nonce.plus(1))
@@ -119,8 +119,8 @@ describe("Transaction Forging - Business registration", () => {
         it("should be rejected, because website is not valid uri [Signed with 1 Passphrase]", async () => {
             // Registering a business
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "bpl.io",
+                name: "ark",
+                website: "ark.io",
             })
                 .withPassphrase(secrets[2])
                 .createOne();
@@ -133,9 +133,9 @@ describe("Transaction Forging - Business registration", () => {
         it("should be rejected, because repository is not valid uri [Signed with 1 Passphrase]", async () => {
             // Registering a business
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
-                repository: "http//bpl.io/repo",
+                name: "ark",
+                website: "https://ark.io",
+                repository: "http//ark.io/repo",
             })
                 .withPassphrase(secrets[3])
                 .createOne();
@@ -172,8 +172,8 @@ describe("Transaction Forging - Business registration", () => {
 
             // Registering a business
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withPassphrase(passphrase)
                 .withSecondPassphrase(secondPassphrase)
@@ -187,8 +187,8 @@ describe("Transaction Forging - Business registration", () => {
         it("should be rejected, because wallet is already a business [Signed with 2 Passphrases]", async () => {
             // Registering a business again
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withPassphrase(passphrase)
                 .withSecondPassphrase(secondPassphrase)
@@ -248,8 +248,8 @@ describe("Transaction Forging - Business registration", () => {
 
             // Registering a business
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withSenderPublicKey(multiSigPublicKey)
                 .withPassphraseList(signPassphrases)
@@ -263,8 +263,8 @@ describe("Transaction Forging - Business registration", () => {
         it("should be rejected, because wallet is already a business [3 of 5]", async () => {
             // Registering a business again
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withSenderPublicKey(multiSigPublicKey)
                 .withPassphraseList(signPassphrases)
