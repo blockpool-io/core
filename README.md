@@ -1,7 +1,7 @@
 # BPL Core
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/blockpool-io/core/bpl_testnet_sc/banner.png" />
+    <img src="https://raw.githubusercontent.com/blockpool-io/core/bpl_mainnet/banner.png" />
 </p>
 
 [![Build Status](https://badgen.now.sh/circleci/github/blockpool-io/core)](https://circleci.com/gh/blockpool-io/core)
