@@ -70,7 +70,7 @@ export class Blockchain implements blockchain.IBlockchain {
      * @param  {Object} options
      * @return {void}
      */
-    constructor(options: { networkStart?: boolean }) {
+    constructor(options: any) {
         // flag to force a network start
         this.state.networkStart = !!options.networkStart;
 
