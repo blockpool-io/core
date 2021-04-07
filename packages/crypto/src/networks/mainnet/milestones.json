@@ -56,6 +56,16 @@
         "reward": 200000000
     },
     {
+        "height": 3280000,
+        "allowSidechainTransactions": true,
+        "allowSplitStake": false
+    },
+    {
+        "height": 3360000,
+        "aip36": true,
+        "allowSplitStake": true
+    },
+    {
         "height": 5821966,
         "reward": 100000000
     },
