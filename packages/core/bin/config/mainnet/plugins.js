@@ -46,7 +46,15 @@ module.exports = {
             },
         },
     },
-    "@blockpool-io/core-blockchain": {},
+    "@blockpool-io/core-blockchain": {
+        sideChainCustodian: false,
+        sideChainConfig: {
+            coreChainNethash: "",
+            coreChainTransferFee: 10000000,
+            coreChainFundPassphrase: "",
+            sideChainId: ""
+        }
+    },
     "@blockpool-io/core-api": {
         enabled: !process.env.CORE_API_DISABLED,
         host: process.env.CORE_API_HOST || "0.0.0.0",

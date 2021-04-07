@@ -4,7 +4,7 @@ import { app } from "@blockpool-io/core-container";
 import { Logger } from "@blockpool-io/core-interfaces";
 import { Handlers } from "@blockpool-io/core-transactions";
 import { isBlockChained } from "@blockpool-io/core-utils";
-import { Interfaces, Utils } from "@blockpool-io/crypto";
+import { Interfaces, Utils, Managers } from "@blockpool-io/crypto";
 import { Blockchain } from "../blockchain";
 import { validateGenerator } from "../utils/validate-generator";
 import {
@@ -67,7 +67,43 @@ export class BlockProcessor {
             return new AlreadyForgedHandler(this.blockchain, block);
         }
 
+        this.processSidechainTransactions(block);
+
         return new AcceptBlockHandler(this.blockchain, block);
+    }
+
+    /**
+     * Consensus-less and slimmed down implementation of sidechain processing.
+     * Only includes reward mirroring and NFT support.
+     * Split staking and smart contract control require consensus 
+     * and state mechanisms and are therefore excluded.
+     * Nodes running this code are considered custodian nodes,
+     * only one of these should be running on a network when using this implementation.
+     */
+    private processSidechainTransactions(block: Interfaces.IBlock): boolean {
+        if (!this.blockchain.options.sideChainCustodian) return false;
+        this.logger.info(`Checking for sidechain data...`);
+
+        // Check if there's a BPL reward and a proper config, send payout if so
+        const bplReward = Managers.configManager.getMilestone(block.data.height).bplReward;
+        const sideChainConfig = this.blockchain.options.sideChainConfig;
+        if (bplReward && bplReward > 0 && sideChainConfig.coreChainNethash && 
+                sideChainConfig.coreChainTransferFee && sideChainConfig.coreChainFundPassphrase && 
+                sideChainConfig.sideChainId) {
+            this.logger.info(`Paying out ${bplReward} BPL reward to delegate.`);
+                
+            // TODO: Move reward payouts to core-sc-payouts plugin
+        }
+
+        for (const transaction of block.transactions) {
+            if (transaction.hasVendorField() && transaction.data.vendorField.startsWith("SC_")) {
+                this.logger.info(`Sidechain command detected.`);
+                
+                // TODO: Move tx handler out of here, remove method entirely afterwards
+            }
+        }
+
+        return true;
     }
 
     private async verifyBlock(block: Interfaces.IBlock): Promise<boolean> {
