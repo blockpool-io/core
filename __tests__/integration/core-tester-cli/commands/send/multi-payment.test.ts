@@ -4,7 +4,7 @@ import { httpie } from "@blockpool-io/core-utils";
 import { Managers, Utils } from "@blockpool-io/crypto";
 import nock from "nock";
 import { MultiPaymentCommand } from "../../../../../packages/core-tester-cli/src/commands/send/multi-payment";
-import { bplToSatoshi, captureTransactions, toFlags } from "../../shared";
+import { arkToSatoshi, captureTransactions, toFlags } from "../../shared";
 import { nodeStatusResponse } from "./fixtures";
 
 beforeEach(() => {
@@ -52,7 +52,7 @@ describe("Commands - Multipayment", () => {
         expectedTransactions
             .filter(tx => tx.type === 7)
             .map(tx => {
-                expect(tx.fee).toEqual(bplToSatoshi(opts.multipaymentFee));
+                expect(tx.fee).toEqual(arkToSatoshi(opts.multipaymentFee));
                 expect(tx.asset.payments).toEqual([
                     {
                         recipientId: "AbfQq8iRSf9TFQRzQWo33dHYU7HFMS17Zd",
@@ -87,7 +87,7 @@ describe("Commands - Multipayment", () => {
         expectedTransactions
             .filter(tx => tx.type === 7)
             .map(tx => {
-                expect(tx.fee).toEqual(bplToSatoshi(0.1));
+                expect(tx.fee).toEqual(arkToSatoshi(0.1));
                 expect(tx.asset.payments).toEqual([
                     {
                         recipientId: "AbfQq8iRSf9TFQRzQWo33dHYU7HFMS17Zd",

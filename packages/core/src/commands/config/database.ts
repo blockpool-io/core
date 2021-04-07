@@ -10,19 +10,19 @@ export class DatabaseCommand extends BaseCommand {
 
     public static examples: string[] = [
         `Set the database host
-$ ark config:database --host=localhost
+$ bpl config:database --host=localhost
 `,
         `Set the database port
-$ ark config:database --port=5432
+$ bpl config:database --port=5432
 `,
         `Set the name of the database user
-$ ark config:database --username=ark
+$ bpl config:database --username=bpl
 `,
         `Set the database name
-$ ark config:database --database=ark_mainnet
+$ bpl config:database --database=bpl_mainnet
 `,
         `Set the database password
-$ ark config:database --password=password
+$ bpl config:database --password=password
 `,
     ];
 

@@ -4,7 +4,7 @@ import { httpie } from "@blockpool-io/core-utils";
 import { Managers } from "@blockpool-io/crypto";
 import nock from "nock";
 import { VoteCommand } from "../../../../../packages/core-tester-cli/src/commands/send/vote";
-import { bplToSatoshi, captureTransactions, expectTransactions, toFlags } from "../../shared";
+import { arkToSatoshi, captureTransactions, expectTransactions, toFlags } from "../../shared";
 import { nodeStatusResponse } from "./fixtures";
 
 beforeEach(() => {
@@ -50,7 +50,7 @@ describe("Commands - Vote", () => {
         expect(httpie.post).toHaveBeenCalledTimes(2);
 
         expectTransactions(expectedTransactions, {
-            fee: bplToSatoshi(opts.voteFee),
+            fee: arkToSatoshi(opts.voteFee),
             asset: {
                 votes: [`+${expectedDelegate}`],
             },
@@ -79,7 +79,7 @@ describe("Commands - Vote", () => {
         expect(httpie.post).toHaveBeenCalledTimes(2);
 
         expectTransactions(expectedTransactions, {
-            fee: bplToSatoshi(opts.voteFee),
+            fee: arkToSatoshi(opts.voteFee),
             asset: {
                 votes: [`+${expectedDelegate}`],
             },

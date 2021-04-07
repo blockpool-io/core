@@ -19,43 +19,43 @@ export const checkCommonFields = (deserialized: Interfaces.ITransaction, expecte
 
 export const businessRegistrationAsset1: IBusinessRegistrationAsset = {
     name: "blockpool-io",
-    website: "https://bpl.io",
+    website: "https://ark.io",
 };
 
 export const businessRegistrationAsset2: IBusinessRegistrationAsset = {
     name: "blockpool-io",
-    website: "https://bpl.io",
+    website: "https://ark.io",
     vat: "123456789",
 };
 
 export const businessRegistrationAsset3: IBusinessRegistrationAsset = {
     name: "blockpool-io",
-    website: "https://bpl.io",
+    website: "https://ark.io",
     vat: "123456789",
     repository: "http://www.repository.com/myorg/myrepo",
 };
 
 export const businessRegistrationAsset4: IBusinessRegistrationAsset = {
-    name: "blockpool-ioBPL",
-    website: "https://bpl.io",
+    name: "blockpool-ioARK",
+    website: "https://ark.io",
     repository: "http://www.repository.com/myorg/myrepo",
 };
 
 // Business update
 
 export const businessUpdateAsset1: IBusinessUpdateAsset = {
-    name: "bpl",
+    name: "ark",
 };
 
 export const businessUpdateAsset2: IBusinessUpdateAsset = {
-    name: "bpl",
-    website: "https://www.bpl.io",
+    name: "ark",
+    website: "https://www.ark.io",
     vat: "1234567890",
 };
 
 export const businessUpdateAsset3: IBusinessUpdateAsset = {
-    name: "bpl",
-    website: "https://www.bpl.io",
+    name: "ark",
+    website: "https://www.ark.io",
     vat: "1234567890",
     repository: "http://www.repository.com/myorg/myrepo",
 };

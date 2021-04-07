@@ -58,7 +58,7 @@ describe("Codec testing", () => {
     });
 
     test("Encode/Decode transfer transactions", () => {
-        console.time("transactions bpl transfer");
+        console.time("transactions ark transfer");
         const properties = [
             "id",
             "version",
@@ -85,7 +85,7 @@ describe("Codec testing", () => {
                 expect(dest).toEqual(source);
             }
         }
-        console.timeEnd("transactions bpl transfer");
+        console.timeEnd("transactions ark transfer");
     });
 
     test("Encode/Decode transactions other than transfer", () => {

@@ -13,7 +13,7 @@ describe("Transaction Forging - Bridgechain registration", () => {
             // Registering a business
             const businessRegistration = TransactionFactory.businessRegistration({
                 name: "blockpool-io",
-                website: "https://bpl.io",
+                website: "https://ark.io",
             })
                 .withPassphrase(secrets[0])
                 .createOne();
@@ -110,7 +110,7 @@ describe("Transaction Forging - Bridgechain registration", () => {
             // Business registration
             const businessRegistration = TransactionFactory.businessRegistration({
                 name: "blockpool-io1",
-                website: "https://bpl.io",
+                website: "https://ark.io",
             })
                 .withPassphrase(secrets[1])
                 .createOne();
@@ -138,7 +138,7 @@ describe("Transaction Forging - Bridgechain registration", () => {
             // Second business registration
             const businessRegistration2 = TransactionFactory.businessRegistration({
                 name: "blockpool-io2",
-                website: "https://bpl.io",
+                website: "https://ark.io",
             })
                 .withPassphrase(secrets[2])
                 .createOne();
@@ -244,7 +244,7 @@ describe("Transaction Forging - Bridgechain registration", () => {
             // Business registration
             const businessRegistration = TransactionFactory.businessRegistration({
                 name: "blockpool-io",
-                website: "https://bpl.io",
+                website: "https://ark.io",
             })
                 .withPassphrase(secrets[5])
                 .createOne();
@@ -298,7 +298,7 @@ describe("Transaction Forging - Bridgechain registration", () => {
             // Registering a business
             const businessRegistration = TransactionFactory.businessRegistration({
                 name: "blockpool-io",
-                website: "https://bpl.io",
+                website: "https://ark.io",
             })
                 .withPassphrase(passphrase)
                 .withSecondPassphrase(secondPassphrase)
@@ -371,8 +371,8 @@ describe("Transaction Forging - Bridgechain registration", () => {
 
             // Registering a business
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withSenderPublicKey(multiSigPublicKey)
                 .withPassphraseList(passphrases)

@@ -14,8 +14,8 @@ services:
         image: "postgres:alpine"
         environment:
             POSTGRES_PASSWORD: password
-            POSTGRES_DB: bpl_testnet
-            POSTGRES_USER: bpl
+            POSTGRES_DB: ark_testnet
+            POSTGRES_USER: ark
     postgres1: *postgresServiceDefinition
     postgres2: *postgresServiceDefinition
     postgres3: *postgresServiceDefinition
@@ -35,8 +35,8 @@ services:
             - /core/packages/core/bin/run core:run --network=testnet
         environment: &coreEnvironment
             CORE_DB_HOST: postgres0
-            CORE_DB_DATABASE: bpl_testnet
-            CORE_DB_USERNAME: bpl
+            CORE_DB_DATABASE: ark_testnet
+            CORE_DB_USERNAME: ark
             CORE_PATH_CONFIG: /core/__tests__/e2e/lib/config/nodes/core0
             CORE_PATH_DATA: /core/__tests__/e2e/lib/config/nodes/core0
                 

@@ -108,11 +108,11 @@ export class Deserializer {
         const beginningMultiSignature = () => {
             buf.mark();
 
-            const marker: number = buf.readUint8();
+            const mbpler: number = buf.readUint8();
 
             buf.reset();
 
-            return marker === 255;
+            return mbpler === 255;
         };
 
         // Second Signature

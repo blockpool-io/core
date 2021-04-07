@@ -4,7 +4,7 @@ import { httpie } from "@blockpool-io/core-utils";
 import { Managers } from "@blockpool-io/crypto";
 import nock from "nock";
 import { DelegateRegistrationCommand } from "../../../../../packages/core-tester-cli/src/commands/send/delegate-registration";
-import { bplToSatoshi, captureTransactions, expectTransactions, toFlags } from "../../shared";
+import { arkToSatoshi, captureTransactions, expectTransactions, toFlags } from "../../shared";
 import { nodeStatusResponse } from "./fixtures";
 
 beforeEach(() => {
@@ -55,7 +55,7 @@ describe("Commands - Delegate Registration", () => {
         expect(httpie.post).toHaveBeenCalledTimes(2);
 
         expectTransactions(expectedTransactions, {
-            fee: bplToSatoshi(opts.delegateFee),
+            fee: arkToSatoshi(opts.delegateFee),
             asset: {
                 delegate: {
                     username: expectedTransactions[1].asset.delegate.username,

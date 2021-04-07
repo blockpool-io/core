@@ -11,8 +11,8 @@
     "slip44": 1,
     "aip20": 0,
     "client": {
-        "token": "TBPL",
+        "token": "TARK",
         "symbol": "TѦ",
-        "explorer": "http://explorer.testnet.blockpool.io"
+        "explorer": "http://texplorer.ark.io"
     }
 }

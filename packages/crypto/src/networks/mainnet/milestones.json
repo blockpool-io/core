@@ -21,10 +21,14 @@
                 "ipfs": 0,
                 "timelockTransfer": 0,
                 "multiPayment": 0,
-                "delegateResignation": 0
+                "delegateResignation": 0,
+                "htlcLock": 10000000,
+                "htlcClaim": 0,
+                "htlcRefund": 0
             }
         },
-        "vendorFieldLength": 255
+        "vendorFieldLength": 255,
+        "multiPaymentLimit": 64
     },
     {
         "height": 40201,
@@ -50,6 +54,16 @@
     {
         "height": 2668276,
         "reward": 200000000
+    },
+    {
+        "height": 3280000,
+        "allowSidechainTransactions": true,
+        "allowSplitStake": false
+    },
+    {
+        "height": 3360000,
+        "aip36": true,
+        "allowSplitStake": true
     },
     {
         "height": 5821966,

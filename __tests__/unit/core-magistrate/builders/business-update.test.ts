@@ -22,7 +22,7 @@ describe("Business update builder", () => {
         it("should be true", () => {
             const actual = builder
                 .businessUpdateAsset({
-                    name: "bpl",
+                    name: "ark",
                 })
                 .sign("passphrase");
             expect(actual.build().verified).toBeTrue();

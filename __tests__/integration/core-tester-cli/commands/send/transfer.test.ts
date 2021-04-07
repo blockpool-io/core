@@ -4,7 +4,7 @@ import { httpie } from "@blockpool-io/core-utils";
 import { Managers } from "@blockpool-io/crypto";
 import nock from "nock";
 import { TransferCommand } from "../../../../../packages/core-tester-cli/src/commands/send/transfer";
-import { bplToSatoshi, captureTransactions, expectTransactions, toFlags } from "../../shared";
+import { arkToSatoshi, captureTransactions, expectTransactions, toFlags } from "../../shared";
 import { nodeStatusResponse } from "./fixtures";
 
 beforeEach(() => {
@@ -51,8 +51,8 @@ describe("Commands - Transfer", () => {
 
         expectTransactions(expectedTransactions, {
             vendorField: "foo bar",
-            amount: bplToSatoshi(expectedTransactionAmount),
-            fee: bplToSatoshi(expectedFee),
+            amount: arkToSatoshi(expectedTransactionAmount),
+            fee: arkToSatoshi(expectedFee),
             recipientId: expectedRecipientId,
         });
     });

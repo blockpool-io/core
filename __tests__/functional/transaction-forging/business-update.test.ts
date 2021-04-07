@@ -19,8 +19,8 @@ describe("Transaction Forging - Business update", () => {
         it("should broadcast, accept and forge it [Signed with 1 Passphrase]", async () => {
             // Registering a business
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withPassphrase(secrets[0])
                 .createOne();
@@ -31,7 +31,7 @@ describe("Transaction Forging - Business update", () => {
 
             // Updating a business
             const businessUpdate = TransactionFactory.businessUpdate({
-                name: "bpl2",
+                name: "ark2",
             })
                 .withPassphrase(secrets[0])
                 .createOne();
@@ -44,8 +44,8 @@ describe("Transaction Forging - Business update", () => {
                 Identities.PublicKey.fromPassphrase(secrets[0]),
             );
             expect(wallet.getAttribute("business.businessAsset")).toEqual({
-                name: "bpl2",
-                website: "https://bpl.io",
+                name: "ark2",
+                website: "https://ark.io",
             });
         });
 
@@ -61,7 +61,7 @@ describe("Transaction Forging - Business update", () => {
 
             // Updating a business
             const businessUpdate = TransactionFactory.businessUpdate({
-                name: "bpl3",
+                name: "ark3",
             })
                 .withPassphrase(secrets[0])
                 .createOne();
@@ -74,8 +74,8 @@ describe("Transaction Forging - Business update", () => {
         it("should reject business update, because business update is already in the pool [Signed with 1 Passphrase]", async () => {
             // Registering a business
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withPassphrase(secrets[1])
                 .createOne();
@@ -86,13 +86,13 @@ describe("Transaction Forging - Business update", () => {
 
             // Updating a business
             const businessUpdate = TransactionFactory.businessUpdate({
-                name: "bpl2",
+                name: "ark2",
             })
                 .withPassphrase(secrets[1])
                 .createOne();
 
             const businessUpdate2 = TransactionFactory.businessUpdate({
-                name: "bpl2",
+                name: "ark2",
             })
                 .withPassphrase(secrets[1])
                 .withNonce(businessUpdate.nonce.plus(1))
@@ -107,7 +107,7 @@ describe("Transaction Forging - Business update", () => {
         it("should reject business update, because updated business name contains unicode control characters [Signed with 1 Passphrase]", async () => {
             // Updating a business
             const businessUpdate = TransactionFactory.businessUpdate({
-                name: "\u0000bpl",
+                name: "\u0000ark",
             })
                 .withPassphrase(secrets[1])
                 .createOne();
@@ -120,7 +120,7 @@ describe("Transaction Forging - Business update", () => {
         it("should reject business update, because updated business name contains disallowed characters [Signed with 1 Passphrase]", async () => {
             // Updating a business
             const businessUpdate = TransactionFactory.businessUpdate({
-                name: "bpl:)",
+                name: "ark:)",
             })
                 .withPassphrase(secrets[1])
                 .createOne();
@@ -133,7 +133,7 @@ describe("Transaction Forging - Business update", () => {
         it("should be rejected, because website is not valid uri [Signed with 1 Passphrase]", async () => {
             // Registering a business
             const businessRegistration = TransactionFactory.businessUpdate({
-                website: "bpl.io",
+                website: "ark.io",
             })
                 .withPassphrase(secrets[2])
                 .createOne();
@@ -146,9 +146,9 @@ describe("Transaction Forging - Business update", () => {
         it("should be rejected, because repository is not valid uri [Signed with 1 Passphrase]", async () => {
             // Registering a business
             const businessRegistration = TransactionFactory.businessUpdate({
-                name: "bpl",
-                website: "https://bpl.io",
-                repository: "http//bpl.io/repo",
+                name: "ark",
+                website: "https://ark.io",
+                repository: "http//ark.io/repo",
             })
                 .withPassphrase(secrets[3])
                 .createOne();
@@ -185,8 +185,8 @@ describe("Transaction Forging - Business update", () => {
 
             // Registering a business
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withPassphrase(passphrase)
                 .withSecondPassphrase(secondPassphrase)
@@ -198,7 +198,7 @@ describe("Transaction Forging - Business update", () => {
 
             // Updating a business
             let businessUpdate = TransactionFactory.businessUpdate({
-                name: "bpl2",
+                name: "ark2",
             })
                 .withPassphrase(passphrase)
                 .withSecondPassphrase(secondPassphrase)
@@ -220,7 +220,7 @@ describe("Transaction Forging - Business update", () => {
 
             // Reject business update
             businessUpdate = TransactionFactory.businessUpdate({
-                name: "bpl3",
+                name: "ark3",
             })
                 .withPassphrase(passphrase)
                 .withSecondPassphrase(secondPassphrase)
@@ -276,8 +276,8 @@ describe("Transaction Forging - Business update", () => {
 
             // Registering a business
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withSenderPublicKey(multiSigPublicKey)
                 .withPassphraseList(passphrases)
@@ -289,7 +289,7 @@ describe("Transaction Forging - Business update", () => {
 
             // Updating a business
             let businessUpdate = TransactionFactory.businessUpdate({
-                name: "bpl2",
+                name: "ark2",
             })
                 .withSenderPublicKey(multiSigPublicKey)
                 .withPassphraseList(passphrases)
@@ -311,7 +311,7 @@ describe("Transaction Forging - Business update", () => {
 
             // Reject business update
             businessUpdate = TransactionFactory.businessUpdate({
-                name: "bpl3",
+                name: "ark3",
             })
                 .withSenderPublicKey(multiSigPublicKey)
                 .withPassphraseList(passphrases)
@@ -327,8 +327,8 @@ describe("Transaction Forging - Business update", () => {
         it("should accept the update then revert to previous wallet state on revert block", async () => {
             // Registering a business
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withPassphrase(secrets[3])
                 .createOne();
@@ -339,7 +339,7 @@ describe("Transaction Forging - Business update", () => {
 
             // Updating a business
             const businessUpdate1 = TransactionFactory.businessUpdate({
-                name: "bpl2",
+                name: "ark2",
             })
                 .withPassphrase(secrets[3])
                 .createOne();
@@ -352,13 +352,13 @@ describe("Transaction Forging - Business update", () => {
                 Identities.PublicKey.fromPassphrase(secrets[3]),
             );
             expect(wallet.getAttribute("business.businessAsset")).toEqual({
-                name: "bpl2",
-                website: "https://bpl.io",
+                name: "ark2",
+                website: "https://ark.io",
             });
 
             // Updating a business
             const businessUpdate2 = TransactionFactory.businessUpdate({
-                name: "bpl23456",
+                name: "ark23456",
             })
                 .withPassphrase(secrets[3])
                 .createOne();
@@ -371,8 +371,8 @@ describe("Transaction Forging - Business update", () => {
             await support.revertLastBlock();
 
             expect(wallet.getAttribute("business.businessAsset")).toEqual({
-                name: "bpl2",
-                website: "https://bpl.io",
+                name: "ark2",
+                website: "https://ark.io",
             });
         });
     });

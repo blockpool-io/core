@@ -21,11 +21,11 @@ describe("applyToRecipient - Multipayment scenario", () => {
      */
     const bobPassphrase = "bob pass phrase1";
     const bobAddress = Identities.Address.fromPassphrase(bobPassphrase, 23);
-    const bobInitialFund = 50 * 1e8; // 50 BPL
+    const bobInitialFund = 50 * 1e8; // 50 ARK
 
     const alicePassphrase = "alice pass phrase1";
     const aliceAddress = Identities.Address.fromPassphrase(alicePassphrase, 23);
-    const aliceInitialFund = 2500 * 1e8; // 2500 BPL
+    const aliceInitialFund = 2500 * 1e8; // 2500 ARK
 
     const randomAddress = Identities.Address.fromPassphrase("ran dom addr1", 23);
 
@@ -50,11 +50,11 @@ describe("applyToRecipient - Multipayment scenario", () => {
         const multipaymentToBobAndAlice = TransactionFactory.multiPayment([
             {
                 recipientId: bobAddress,
-                amount: (2000 * 1e8).toFixed(), // 2000 BPL
+                amount: (2000 * 1e8).toFixed(), // 2000 ARK
             },
             {
                 recipientId: aliceAddress,
-                amount: (10 * 1e8).toFixed(), // 10 BPL
+                amount: (10 * 1e8).toFixed(), // 10 ARK
             },
         ])
             .withPassphrase(alicePassphrase)
@@ -77,7 +77,7 @@ describe("applyToRecipient - transfer and multipayment classic scenarios", () =>
         // just send funds to a new wallet, and try to send more than the funds from this new wallet
         const bobPassphrase = "bob pass phrase2";
         const bobAddress = Identities.Address.fromPassphrase(bobPassphrase, 23);
-        const bobInitialFund = 100 * 1e8; // 100 BPL
+        const bobInitialFund = 100 * 1e8; // 100 ARK
 
         const randomAddress = Identities.Address.fromPassphrase(secrets[1], 23);
         const initialTxToBob = TransactionFactory.transfer(bobAddress, bobInitialFund)
@@ -107,7 +107,7 @@ describe("applyToRecipient - transfer and multipayment classic scenarios", () =>
         // just send funds to a new wallet with multipayment, and try to send more than the funds from this new wallet
         const bobPassphrase = "bob pass phrase3";
         const bobAddress = Identities.Address.fromPassphrase(bobPassphrase, 23);
-        const bobInitialFund = 100 * 1e8; // 100 BPL
+        const bobInitialFund = 100 * 1e8; // 100 ARK
 
         const randomAddress = Identities.Address.fromPassphrase("a b c", 23);
 
@@ -148,7 +148,7 @@ describe("Pool transactions when database applyBlock fails (forged block contain
     // just send funds to a new wallet, and try to send more than the funds from this new wallet
     const bobPassphrase = "bob pass phrase4";
     const bobAddress = Identities.Address.fromPassphrase(bobPassphrase, 23);
-    const bobInitialFund = 100 * 1e8; // 100 BPL
+    const bobInitialFund = 100 * 1e8; // 100 ARK
 
     const randomAddress = Identities.Address.fromPassphrase(secrets[1], 23);
 
@@ -186,11 +186,11 @@ describe("Pool transactions when acceptChainedBlock apply tx fails", () => {
     // (these existing transactions are probably outdated then)
     const bobPassphrase = "bob pass phrase5";
     const bobAddress = Identities.Address.fromPassphrase(bobPassphrase, 23);
-    const bobInitialFund = 100 * 1e8; // 100 BPL
+    const bobInitialFund = 100 * 1e8; // 100 ARK
 
     const alicePassphrase = "alice pass phrase5";
     const aliceAddress = Identities.Address.fromPassphrase(alicePassphrase, 23);
-    const aliceInitialFund = 100 * 1e8; // 100 BPL
+    const aliceInitialFund = 100 * 1e8; // 100 ARK
 
     const randomAddress = Identities.Address.fromPassphrase(secrets[1], 23);
 

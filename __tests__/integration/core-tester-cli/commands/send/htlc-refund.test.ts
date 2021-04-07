@@ -4,7 +4,7 @@ import { httpie } from "@blockpool-io/core-utils";
 import { Enums, Managers } from "@blockpool-io/crypto";
 import nock from "nock";
 import { HtlcRefundCommand } from "../../../../../packages/core-tester-cli/src/commands/send/htlc-refund";
-import { bplToSatoshi, captureTransactions, toFlags } from "../../shared";
+import { arkToSatoshi, captureTransactions, toFlags } from "../../shared";
 import { nodeStatusResponse } from "./fixtures";
 
 beforeEach(() => {
@@ -38,7 +38,7 @@ describe("Commands - Htlc refund", () => {
         const opts = {
             number: 1,
             htlcRefundFee: 0.2,
-            amount: bplToSatoshi(12),
+            amount: arkToSatoshi(12),
         };
 
         const expectedTransactions = [];
@@ -51,7 +51,7 @@ describe("Commands - Htlc refund", () => {
         expectedTransactions
             .filter(tx => tx.type === Enums.TransactionType.HtlcRefund)
             .map(tx => {
-                expect(tx.fee).toEqual(bplToSatoshi(opts.htlcRefundFee));
+                expect(tx.fee).toEqual(arkToSatoshi(opts.htlcRefundFee));
                 expect(tx.asset.refund.lockTransactionId).toBeDefined();
             });
     });
@@ -59,7 +59,7 @@ describe("Commands - Htlc refund", () => {
     it("should apply htlc refund transactions with default fee when none specified", async () => {
         const opts = {
             number: 1,
-            amount: bplToSatoshi(12),
+            amount: arkToSatoshi(12),
         };
 
         const expectedTransactions = [];
@@ -72,7 +72,7 @@ describe("Commands - Htlc refund", () => {
         expectedTransactions
             .filter(tx => tx.type === Enums.TransactionType.HtlcRefund)
             .map(tx => {
-                expect(tx.fee).toEqual(bplToSatoshi(0.1));
+                expect(tx.fee).toEqual(arkToSatoshi(0.1));
                 expect(tx.asset.refund.lockTransactionId).toBeDefined();
             });
     });

@@ -44,7 +44,7 @@ module.exports = async options => {
     await testUtils.POST("transactions", { transactions });
 
     function _balanceNeededFromTxMix(txType1, txType2) {
-        // we want to have 1 bplstoshi less than the amount needed for the 2 transactions
+        // we want to have 1 arkstoshi less than the amount needed for the 2 transactions
         return utils.amountNeeded[txType1] + utils.amountNeeded[txType2] - 1;
     }
 };

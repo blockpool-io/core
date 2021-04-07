@@ -12,8 +12,8 @@ describe("Transaction Forging - Business resignation", () => {
         it("should broadcast, accept and forge it [Signed with 1 Passphrase]", async () => {
             // Registering a business
             let businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withPassphrase(secrets[0])
                 .createOne();
@@ -33,8 +33,8 @@ describe("Transaction Forging - Business resignation", () => {
 
             // Reject a new registration
             businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withPassphrase(secrets[0])
                 .createOne();
@@ -57,8 +57,8 @@ describe("Transaction Forging - Business resignation", () => {
         it("should reject business resignation, because business resignation is already in the pool [Signed with 1 Passphrase]", async () => {
             // Registering a business
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withPassphrase(secrets[1])
                 .createOne();
@@ -85,8 +85,8 @@ describe("Transaction Forging - Business resignation", () => {
         it("should reject business resignation, because bridgechain is not resigned [Signed with 1 Passphrase]", async () => {
             // Registering a business
             const businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withPassphrase(secrets[2])
                 .createOne();
@@ -146,8 +146,8 @@ describe("Transaction Forging - Business resignation", () => {
 
             // Registering a business
             let businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withPassphrase(passphrase)
                 .withSecondPassphrase(secondPassphrase)
@@ -179,8 +179,8 @@ describe("Transaction Forging - Business resignation", () => {
 
             // Reject a new registration
             businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withPassphrase(passphrase)
                 .withSecondPassphrase(secondPassphrase)
@@ -235,8 +235,8 @@ describe("Transaction Forging - Business resignation", () => {
 
             // Registering a business
             let businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withSenderPublicKey(multiSigPublicKey)
                 .withPassphraseList(passphrases)
@@ -268,8 +268,8 @@ describe("Transaction Forging - Business resignation", () => {
 
             // Reject a new registration
             businessRegistration = TransactionFactory.businessRegistration({
-                name: "bpl",
-                website: "https://bpl.io",
+                name: "ark",
+                website: "https://ark.io",
             })
                 .withSenderPublicKey(multiSigPublicKey)
                 .withPassphraseList(passphrases)

@@ -5,7 +5,7 @@ import { Enums, Managers } from "@blockpool-io/crypto";
 import nock from "nock";
 import { HtlcLockCommand } from "../../../../../packages/core-tester-cli/src/commands/send/htlc-lock";
 import { htlcSecretHashHex } from "../../../../utils/fixtures";
-import { bplToSatoshi, captureTransactions, toFlags } from "../../shared";
+import { arkToSatoshi, captureTransactions, toFlags } from "../../shared";
 import { nodeStatusResponse } from "./fixtures";
 
 beforeEach(() => {
@@ -52,7 +52,7 @@ describe("Commands - Htlc lock", () => {
         expectedTransactions
             .filter(tx => tx.type === Enums.TransactionType.HtlcLock)
             .map(tx => {
-                expect(tx.fee).toEqual(bplToSatoshi(opts.htlcLockFee));
+                expect(tx.fee).toEqual(arkToSatoshi(opts.htlcLockFee));
                 expect(tx.asset.lock.secretHash).toEqual(htlcSecretHashHex);
             });
     });
@@ -73,7 +73,7 @@ describe("Commands - Htlc lock", () => {
         expectedTransactions
             .filter(tx => tx.type === Enums.TransactionType.HtlcLock)
             .map(tx => {
-                expect(tx.fee).toEqual(bplToSatoshi(0.1));
+                expect(tx.fee).toEqual(arkToSatoshi(0.1));
                 expect(tx.asset.lock.secretHash).toEqual(htlcSecretHashHex);
             });
     });
