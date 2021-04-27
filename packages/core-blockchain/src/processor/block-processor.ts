@@ -4,7 +4,8 @@ import { app } from "@blockpool-io/core-container";
 import { Logger } from "@blockpool-io/core-interfaces";
 import { Handlers } from "@blockpool-io/core-transactions";
 import { isBlockChained } from "@blockpool-io/core-utils";
-import { Interfaces, Utils, Managers } from "@blockpool-io/crypto";
+//import { Interfaces, Utils, Managers } from "@blockpool-io/crypto";
+import { Interfaces, Utils } from "@blockpool-io/crypto";
 import { Blockchain } from "../blockchain";
 import { validateGenerator } from "../utils/validate-generator";
 import {
@@ -67,7 +68,7 @@ export class BlockProcessor {
             return new AlreadyForgedHandler(this.blockchain, block);
         }
 
-        this.processSidechainTransactions(block);
+        // this.processSidechainTransactions(block);
 
         return new AcceptBlockHandler(this.blockchain, block);
     }
@@ -80,7 +81,7 @@ export class BlockProcessor {
      * Nodes running this code are considered custodian nodes,
      * only one of these should be running on a network when using this implementation.
      */
-    private processSidechainTransactions(block: Interfaces.IBlock): boolean {
+    /* private processSidechainTransactions(block: Interfaces.IBlock): boolean {
         if (!this.blockchain.options.sideChainCustodian) return false;
         this.logger.info(`Checking for sidechain data...`);
 
@@ -104,7 +105,7 @@ export class BlockProcessor {
         }
 
         return true;
-    }
+    } */
 
     private async verifyBlock(block: Interfaces.IBlock): Promise<boolean> {
         if (block.verification.containsMultiSignatures) {
