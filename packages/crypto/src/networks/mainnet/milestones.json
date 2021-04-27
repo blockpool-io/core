@@ -66,6 +66,12 @@
         "allowSplitStake": true
     },
     {
+        "height": 3380000,
+        "p2p": {
+            "minimumVersions": ["^2.7.0 || ^2.7.0-pre.0 || ^2.7.0-rc.0"]
+        }
+    },
+    {
         "height": 5821966,
         "reward": 100000000
     },

@@ -1,6 +1,6 @@
 {
     "name": "@blockpool-io/core-jest-matchers",
-    "version": "2.7.25",
+    "version": "2.7.26",
     "description": "Jest matchers for Blockpool Core",
     "license": "MIT",
     "contributors": [
@@ -20,8 +20,8 @@
         "prepublishOnly": "yarn build"
     },
     "dependencies": {
-        "@blockpool-io/core-container": "^2.7.25",
-        "@blockpool-io/crypto": "^2.7.25",
+        "@blockpool-io/core-container": "^2.7.26",
+        "@blockpool-io/crypto": "^2.7.26",
         "@arkecosystem/utils": "^1.2",
         "bip39": "^3.0.2",
         "got": "^9.6.0",

@@ -14,6 +14,14 @@ export const defaults = {
      */
     minimumNetworkReach: 20,
     /**
+     * The maximum number of sidechains we will maintain peer connections with
+     */
+    maximumUniqueSidechains: 2,
+    /**
+     * The maximum number of peers to connect to on a sidechain
+     */
+    maximumPeersPerSidechain: 10,
+    /**
      * The timeout to verify a peer. [milliseconds]
      */
     verifyTimeout: 60000,
