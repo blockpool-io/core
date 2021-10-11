@@ -9,7 +9,11 @@ export const plugin: Container.IPluginDescriptor = {
     async register(container: Container.IContainer, options) {
         const forgerManager: ForgerManager = new ForgerManager(options);
 
-        await forgerManager.startForging(options.bip38 as string, options.password as string);
+        await forgerManager.startForging(
+            options.bip38 as string,
+            options.password as string,
+            options.crossforger
+        );
 
         // Don't keep bip38 password in memory
         delete options.bip38;

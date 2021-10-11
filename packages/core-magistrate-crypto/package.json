@@ -1,6 +1,6 @@
 {
     "name": "@blockpool-io/core-magistrate-crypto",
-    "version": "2.7.25",
+    "version": "2.7.26-cf",
     "description": "ARK transactions for businesses and bridgechains",
     "license": "MIT",
     "contributors": [
@@ -21,7 +21,7 @@
         "prepublishOnly": "yarn build"
     },
     "dependencies": {
-        "@blockpool-io/crypto": "^2.7.25",
+        "@blockpool-io/crypto": "^2.7.26-cf",
         "bytebuffer": "^5.0.1"
     },
     "publishConfig": {

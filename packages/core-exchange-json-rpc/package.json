@@ -1,6 +1,6 @@
 {
     "name": "@blockpool-io/core-exchange-json-rpc",
-    "version": "2.7.25",
+    "version": "2.7.26-cf",
     "description": "Exchange JSON-RPC for Blockpool Core",
     "license": "MIT",
     "contributors": [
@@ -19,8 +19,8 @@
         "pretest": "bash ../../scripts/pre-test.sh"
     },
     "dependencies": {
-        "@blockpool-io/core-container": "^2.7.25",
-        "@blockpool-io/core-interfaces": "^2.7.25",
+        "@blockpool-io/core-container": "^2.7.26-cf",
+        "@blockpool-io/core-interfaces": "^2.7.26-cf",
         "@arkecosystem/exchange-json-rpc": "^2.0.1"
     },
     "engines": {

@@ -1,6 +1,6 @@
 {
     "name": "@blockpool-io/core-transaction-pool",
-    "version": "2.7.25",
+    "version": "2.7.26-cf",
     "description": "Transaction Pool Manager for Blockpool Core",
     "license": "MIT",
     "contributors": [
@@ -24,14 +24,14 @@
         "pretest": "bash ../../scripts/pre-test.sh"
     },
     "dependencies": {
-        "@blockpool-io/core-container": "^2.7.25",
-        "@blockpool-io/core-database": "^2.7.25",
-        "@blockpool-io/core-event-emitter": "^2.7.25",
-        "@blockpool-io/core-interfaces": "^2.7.25",
-        "@blockpool-io/core-state": "^2.7.25",
-        "@blockpool-io/core-transactions": "^2.7.25",
-        "@blockpool-io/core-utils": "^2.7.25",
-        "@blockpool-io/crypto": "^2.7.25",
+        "@blockpool-io/core-container": "^2.7.26-cf",
+        "@blockpool-io/core-database": "^2.7.26-cf",
+        "@blockpool-io/core-event-emitter": "^2.7.26-cf",
+        "@blockpool-io/core-interfaces": "^2.7.26-cf",
+        "@blockpool-io/core-state": "^2.7.26-cf",
+        "@blockpool-io/core-transactions": "^2.7.26-cf",
+        "@blockpool-io/core-utils": "^2.7.26-cf",
+        "@blockpool-io/crypto": "^2.7.26-cf",
         "@types/better-sqlite3": "^5.4.0",
         "@types/fs-extra": "^8.0.0",
         "@types/pluralize": "^0.0.29",

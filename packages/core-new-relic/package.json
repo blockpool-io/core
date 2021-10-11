@@ -1,6 +1,6 @@
 {
     "name": "@blockpool-io/core-new-relic",
-    "version": "2.7.25",
+    "version": "2.7.26-cf",
     "description": "New Relic integration for Blockpool Core.",
     "license": "MIT",
     "contributors": [
@@ -18,7 +18,7 @@
         "prepublishOnly": "yarn build"
     },
     "dependencies": {
-        "@blockpool-io/core-container": "^2.7.25",
+        "@blockpool-io/core-container": "^2.7.26-cf",
         "newrelic": "^6.0.0"
     },
     "devDependencies": {
