@@ -55,7 +55,7 @@ export class ForgerManager {
             return;
         }
 
-        if (crossforger.enabled) {
+        if (crossforger && crossforger.enabled) {
             this.logger.info("Crossforger loading...");
             if (this.delegates.length == 1) 
                 this.logger.error("Crossforger can't run with only one delegate.");

@@ -1,6 +1,6 @@
 {
     "name": "@blockpool-io/core-container",
-    "version": "2.7.26-cf",
+    "version": "2.7.27",
     "description": "Container for Blockpool Core",
     "license": "MIT",
     "contributors": [
@@ -19,9 +19,9 @@
         "prepublishOnly": "yarn build"
     },
     "dependencies": {
-        "@blockpool-io/core-event-emitter": "^2.7.26-cf",
-        "@blockpool-io/core-interfaces": "^2.7.26-cf",
-        "@blockpool-io/crypto": "^2.7.26-cf",
+        "@blockpool-io/core-event-emitter": "^2.7.27",
+        "@blockpool-io/core-interfaces": "^2.7.27",
+        "@blockpool-io/crypto": "^2.7.27",
         "@hapi/hoek": "^8.0.2",
         "@hapi/joi": "^15.1.0",
         "awilix": "^4.2.2",

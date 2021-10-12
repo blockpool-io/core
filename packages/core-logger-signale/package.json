@@ -1,6 +1,6 @@
 {
     "name": "@blockpool-io/core-logger-signale",
-    "version": "2.7.26-cf",
+    "version": "2.7.27",
     "description": "Signale integration for Blockpool Core",
     "license": "MIT",
     "contributors": [
@@ -19,8 +19,8 @@
         "prepublishOnly": "yarn build"
     },
     "dependencies": {
-        "@blockpool-io/core-interfaces": "^2.7.26-cf",
-        "@blockpool-io/core-logger": "^2.7.26-cf",
+        "@blockpool-io/core-interfaces": "^2.7.27",
+        "@blockpool-io/core-logger": "^2.7.27",
         "signale": "^1.4.0"
     },
     "devDependencies": {

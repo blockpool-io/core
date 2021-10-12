@@ -1,6 +1,6 @@
 {
     "name": "@blockpool-io/core-forger",
-    "version": "2.7.26-cf",
+    "version": "2.7.27",
     "description": "Forger for Blockpool Core",
     "license": "MIT",
     "contributors": [
@@ -21,13 +21,13 @@
         "pretest": "bash ../../scripts/pre-test.sh"
     },
     "dependencies": {
-        "@blockpool-io/core-container": "^2.7.26-cf",
-        "@blockpool-io/core-event-emitter": "^2.7.26-cf",
-        "@blockpool-io/core-interfaces": "^2.7.26-cf",
-        "@blockpool-io/core-p2p": "^2.7.26-cf",
-        "@blockpool-io/core-state": "^2.7.26-cf",
-        "@blockpool-io/core-utils": "^2.7.26-cf",
-        "@blockpool-io/crypto": "^2.7.26-cf",
+        "@blockpool-io/core-container": "^2.7.27",
+        "@blockpool-io/core-event-emitter": "^2.7.27",
+        "@blockpool-io/core-interfaces": "^2.7.27",
+        "@blockpool-io/core-p2p": "^2.7.27",
+        "@blockpool-io/core-state": "^2.7.27",
+        "@blockpool-io/core-utils": "^2.7.27",
+        "@blockpool-io/crypto": "^2.7.27",
         "@arkecosystem/client": "^3.0.0",
         "delay": "^4.3.0",
         "lodash.isempty": "^4.4.0",
