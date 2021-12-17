@@ -1,6 +1,6 @@
 {
     "name": "@blockpool-io/crypto",
-    "version": "2.7.27",
+    "version": "2.7.28",
     "description": "Crypto utilities for the Blockpool Blockchain",
     "license": "MIT",
     "contributors": [
