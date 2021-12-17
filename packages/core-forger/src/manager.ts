@@ -19,15 +19,14 @@ export class ForgerManager {
     private secrets: string[];
     private network: Types.NetworkType;
     private client: Client;
-    private crossClient: Connection;
-    private custodian: string;
     private delegates: Delegate[];
-    private crossDelegate: Delegate;
-    private scNet: any;
     private usernames: { [key: string]: string };
     private isStopped: boolean;
     private round: P2P.ICurrentRound;
     private initialized: boolean;
+
+    private crossClient: Connection;
+    private scNet: any;
 
     constructor(options) {
         this.secrets = this.config.get("delegates.secrets");
@@ -56,20 +55,7 @@ export class ForgerManager {
         }
 
         if (crossforger && crossforger.enabled) {
-            this.logger.info("Crossforger loading...");
-            if (this.delegates.length == 1) 
-                this.logger.error("Crossforger can't run with only one delegate.");
-            else {
-                const idx = this.delegates.findIndex(delegate => !delegate.bip38);
-                if (idx == -1)
-                    this.logger.error("Crossforger can't use BIP38 delegates. Add at least one non-encrypted passsphrase.");
-                else {
-                    this.crossDelegate = this.delegates.splice(idx, 1)[0];
-                    this.custodian = crossforger.custodian;
-                    this.crossForge();
-                }
-
-            }
+            this.crossForge(crossforger.custodian);
         }
 
         let timeout: number;
@@ -84,27 +70,35 @@ export class ForgerManager {
         }
     }
 
-    public async crossForge(): Promise<void> {
-        this.logger.info(`Crossforger started for ${this.crossDelegate.publicKey}`);
+    public async crossForge(custodian: string): Promise<void> {
+        this.logger.info(`Crossforger started with custodian: ${custodian}`);
 
-        if(!this.custodian.endsWith('/')) this.custodian += '/';
-        this.crossClient = new Connection(`${this.custodian}api/v2`);
-        let constants;
+        if(!custodian.endsWith('/')) custodian += '/';
+        this.crossClient = new Connection(`${custodian}api/v2`);
+        let config;
         try {
-            constants = (await this.crossClient.api('node').configuration()).body.data.constants;
+            config = (await this.crossClient.api('node').configuration()).body.data;
         } catch (e) {
-            this.logger.error(`Crossforger not able to contact custodian.`);
+            this.logger.error(`Crossforger not able to contact custodian. Stopping.`);
             return;
         }
         
-        if(!constants) {
-            this.logger.error(`Crossforger not able to get network details.`)
+        if(!config) {
+            this.logger.error(`Crossforger not able to get network details. Stopping.`)
+            return;
         }
+
+        if(config.nethash == this.network.nethash) {
+            this.logger.error(`Crossforger running on same network as custodian. Stopping.`)
+            return;
+        }
+
         this.scNet = {};
-        this.scNet.activeDelegates = constants.activeDelegates;
-        this.scNet.blocktimeMs = constants.blocktime * 1000;
-        this.scNet.epoch = new Date(constants.epoch);
-        this.scNet.reward = constants.reward;
+        this.scNet.version = config.version;
+        this.scNet.activeDelegates = config.constants.activeDelegates;
+        this.scNet.blocktimeMs = config.constants.blocktime * 1000;
+        this.scNet.epoch = new Date(config.constants.epoch);
+        this.scNet.reward = config.constants.reward;
 
         const timeTillNextSlot: number = 
             this.scNet.blocktimeMs - ((Date.now() - this.scNet.epoch.getTime()) % this.scNet.blocktimeMs);
@@ -127,11 +121,28 @@ export class ForgerManager {
         try {
             const currentForger = (await this.crossClient.get('delegates/round')).body[roundSlot - 1];
             this.logger.debug(`Current sidechain forger: ${currentForger.username}`);
-            if (this.crossDelegate.publicKey == currentForger.publicKey) {
+            let idx = this.delegates.findIndex(delegate => delegate.publicKey == currentForger.publicKey);
+            if (idx != -1) {
                 this.logger.info(`Crossforging for ${currentForger.username}...`);
-
+                let crossDelegate = this.delegates[idx];
                 const lastScBlock = (await this.crossClient.get("blockchain")).body.data.block;
-                const block: Interfaces.IBlock = this.crossDelegate.forge([], {
+
+                const txs = [];
+                try {
+                    let res = (await this.crossClient.api("transactions").allUnconfirmed()).body.data;
+                    txs.push(...res);
+                } catch (e) {
+                    this.logger.error("Failed to get mempool from custodian.")
+                    this.logger.debug(JSON.stringify(e));
+                }
+
+                for (const tx of txs) {
+                    tx.recipientId = tx.recipient;
+                    tx.network = this.scNet.version; // reminder to self, this is painfully bad to have to do
+                }
+                this.logger.info(`Including ${txs.length} txs in block.`)
+
+                const block: Interfaces.IBlock = crossDelegate.forge(txs, {
                     previousBlock: {
                         id: lastScBlock.id,
                         idHex: lastScBlock.id,
@@ -139,6 +150,7 @@ export class ForgerManager {
                     },
                     timestamp: Math.floor((Date.now() - this.scNet.epoch.getTime()) / 1000),
                     reward: this.scNet.reward,
+                    crossforged: true
                 });
                 const res = await this.crossClient.post("delegates/crossforge", { body: block.serialized });
                 this.logger.info(`${res.body.status}. Took ${Date.now() - start} ms.`);

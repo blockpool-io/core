@@ -6,7 +6,7 @@ import { Deserializer } from "./deserializer";
 
 export class BlockFactory {
     // @TODO: add a proper type hint for data
-    public static make(data: any, keys: IKeyPair): IBlock {
+    public static make(data: any, keys: IKeyPair, dataOptions: any = {}): IBlock {
         data.generatorPublicKey = keys.publicKey;
 
         const payloadHash: Buffer = Block.serialize(data, false);
@@ -15,7 +15,7 @@ export class BlockFactory {
         data.blockSignature = Hash.signECDSA(hash, keys);
         data.id = Block.getId(data);
 
-        return this.fromData(data);
+        return this.fromData(data, dataOptions);
     }
 
     public static fromHex(hex: string): IBlock {
@@ -41,8 +41,8 @@ export class BlockFactory {
         return this.fromData(data);
     }
 
-    public static fromData(data: IBlockData, options: { deserializeTransactionsUnchecked?: boolean } = {}): IBlock {
-        data = Block.applySchema(data);
+    public static fromData(data: IBlockData, options: { crossforged?: boolean, deserializeTransactionsUnchecked?: boolean } = {}): IBlock {
+        data = options.crossforged ? data : Block.applySchema(data);
 
         const serialized: string = Block.serializeWithTransactions(data).toString("hex");
         const block: IBlock = new Block({ ...Deserializer.deserialize(serialized, false, options), id: data.id });

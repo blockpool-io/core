@@ -37,7 +37,10 @@ export class TransactionFactory {
      */
     public static fromBytesUnsafe(buffer: Buffer, id?: string): ITransaction {
         try {
-            const options: IDeserializeOptions | ISerializeOptions = { acceptLegacyVersion: true };
+            const options: IDeserializeOptions | ISerializeOptions = { 
+                acceptLegacyVersion: true, 
+                unsafe: true 
+            };
             const transaction = Deserializer.deserialize(buffer, options);
             transaction.data.id = id || Utils.getId(transaction.data, options);
             transaction.isVerified = true;

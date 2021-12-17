@@ -107,6 +107,7 @@ export class Delegate {
                     transactions,
                 },
                 this.keys,
+                options.crossforged ? { crossforged: true, deserializeTransactionsUnchecked: true } : {}
             );
 
             if (this.bip38) {
